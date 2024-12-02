@@ -1,0 +1,35 @@
+cuisines:
+  ramen:
+    title: "ラーメン"
+    data_file: "data/2024_tokyo_ramen_restaurants_all_info.csv"
+    min_rating: 3.5
+    num_markers: 100
+
+  sushi:
+    title: "お寿司"
+    data_file: "data/2024_tokyo_sushi_restaurants_all_info.csv"
+    min_rating: 3.5
+    num_markers: 100
+
+  unagi:
+    title: "うなぎ"
+    data_file: "data/2024_tokyo_unagi_restaurants_all_info.csv"
+    min_rating: 3.5
+    num_markers: 100
+
+  yakitori:
+    title: "焼き鳥"
+    data_file: "data/2024_tokyo_yakitori_restaurants_all_info.csv"
+    min_rating: 3.5
+    num_markers: 100    
+  tonkatsu:  
+    title: "とんかつ"
+    data_file: "data/2024_tokyo_tonkatsu_restaurants_all_info.csv"
+    min_rating: 3.5
+    num_markers: 100    
+
+
+
+common_filters:
+  min_rating: 3.5
+  num_markers: 100

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px 50px 100px;
+            background-image: url('{{ bg_path }}'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        h1 {
+            color: #333;
+        }
+        .summary-box {
+            position: absolute; /* Position it absolutely */
+            right: 100px; /* Distance from the right edge */
+            top: 120px; /* Distance from the top edge */
+            width: 200px; /* Set a width for the box */
+            padding: 15px; /* Add some padding */
+            background-color: #f9f9f9; /* Background color */
+            border: 1px solid #ccc; /* Border for the box */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+        }
+        .roulette-box {
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            background-color: #f9f9f9;
+        }
+        /* Search bar styles */
+        .search-box {
+            margin: 20px auto;
+            padding: 10px;
+            width: 300px;
+        }
+        .search-box input {
+            width: 70%;
+            padding: 5px;
+        }
+        .search-box button {
+            padding: 5px;
+        }
+        #search-results {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none; /* Hidden by default */
+        }
+        #dateDisplay {
+            margin-top: 20px; /* Adjust this value for more or less space */
+            font-size: 18px; /* Optional: Adjust font size */
+            color: #333; /* Optional: Adjust text color */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Welcome to {{ author }}'s Tokyo Restaurant Guide</h1>
+    <div class="summary-box">
+        <h2>今まで行った店の一覧</h2>
+        {% for cuisine in visit_counts.keys() %}
+        <p><strong>{{ title[cuisine] }}:</strong> {{ visit_counts[cuisine] }}/{{restaurant_counts[cuisine]}}軒</p>
+    {% endfor %}
+    </div>
+
+    <div class="roulette-box">
+        <h2>今日のおすすめ</h2>
+        <p id="dateDisplay"></p> 
+        {% if selected_shop is not none %}
+            <p><strong>お店:</strong> {{ selected_shop['name'] }}<br>
+            <strong>近くの駅:</strong> {{ selected_shop['station'] }}<br>
+            <strong>Rating:</strong> {{ selected_shop['rating'] }}</p>
+        {% endif %}
+    </div>
+
+    <p>駅近くの店を探す:</p>
+    <!-- Search Bar -->
+    <div class="search-box" style="margin-top: -20px;">
+        <input type="text" id="stationInput" placeholder="駅を入力してください...">
+        <button id="searchButton">Search</button>
+    </div>
+
+    <div id="search-results"></div>
+    <p>Discover the top restaurants in Tokyo on the map!</p>
+    <p><a href="/ramen">Explore Ramen Restaurants</a></p>
+    <p><a href="/unagi">Explore Unagi Restaurants</a></p>
+    <p><a href="/sushi">Explore Sushi Restaurants</a></p>
+    <p><a href="/yakitori">Explore Yakitori Restaurants</a></p>
+    <p><a href="/tonkatsu">Explore Tonkatsu Restaurants</a></p>
+    <footer style="margin-top: 100px;">
+        <p>Version: {{ version }}</p>
+    </footer>
+
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const stationName = document.getElementById('stationInput').value;
+            if (stationName) {
+                fetch(`/search_restaurants?station=${encodeURIComponent(stationName)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const resultsDiv = document.getElementById('search-results');
+                        resultsDiv.innerHTML = ''; // Clear previous results
+                        if (data.restaurants.length > 0) {
+                            data.restaurants.forEach(restaurant => {
+                                const p = document.createElement('p');
+                                p.textContent = restaurant.name + ' - ' + restaurant.station + ' - ' + restaurant.rating;
+                                resultsDiv.appendChild(p);
+                            });
+                            resultsDiv.style.display = 'block'; // Show results
+                        } else {
+                            resultsDiv.innerHTML = '<p>No restaurants found for this station.</p>';
+                            resultsDiv.style.display = 'block'; // Show message
+                        }
+                    })
+                    .catch(error => console.error('Error fetching restaurants:', error));
+            } else {
+                alert('Please enter a station name.');
+            }
+        });
+    </script>
+    <script>
+        // Function to display the current date and weekday
+        function displayCurrentDate() {
+            const dateDisplay = document.getElementById('dateDisplay');
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', locale: 'ja-JP' };
+            const currentDate = new Date().toLocaleDateString('ja-JP', options);
+            dateDisplay.textContent = currentDate; // Set the text content to the formatted date
+        }
+
+        // Call the function to display the date when the page loads
+        displayCurrentDate();
+
+        // ... existing JavaScript code ...
+    </script>
+</body>
+</html>
