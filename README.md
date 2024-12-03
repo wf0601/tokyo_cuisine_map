@@ -21,5 +21,11 @@ Feel free to modify settings in the config, you can add/remove genres to tailor 
 ![landing_page](md_pics/p3.png)
 
 ## Map Page
+
+You can tick on 'Visited' to mark the restaurants you have already been to. 
+
 ![example1](md_pics/p2.png)
+
+You can add your own reviews or remarks of the restaurants, it will be automatically saves in the backend. 
+
 <img src="md_pics/p1.png" alt="example2" style="width:50%; height:auto;">
