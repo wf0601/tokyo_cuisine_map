@@ -1,7 +1,14 @@
-# Tokyo Ramen Lover
+# Tokyo Cuisine Map
 
-As a Ramen Hunter, I am keen on trying all kinds of ramen in Tokyo. 
+As a Food Hunter used to be living in Tokyo, I collected information about many restaurants in Tokyo including all genres. 
 
-I created this project as my personal record on top ramen restaurants in Tokyo I have visited. 
+This project can serve as your personal pocket guide to explore great food in Tokyo. You can mark the places you have visited, save your comments and reviews, and get your daily recommendations or use it as a search engine. 
 
-You can create your own Tokyo Ramen Map by clicking the checkbox in the bubbles on the map. 
+
+You can simply build from source using docker
+
+`docker build -t tokyo-cuisine-map`
+
+`docker run -p 5004:5004`
+
+Feel free to modify some setting in the config.
