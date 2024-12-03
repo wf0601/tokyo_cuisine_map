@@ -11,7 +11,7 @@ To build the image:
 
 `docker build -t tokyo_cuisine`
 
-Run with either the run button in Docker or use the code below.
+Run with either click the run button in Docker or use the command below.
 
 `docker run -d -p 5004:5004 --name my_tokyo_cuisine tokyo_cuisine`
 
