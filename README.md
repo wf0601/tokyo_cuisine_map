@@ -22,4 +22,4 @@ Feel free to modify settings in the config, you can add/remove genres to tailor 
 
 ## Map Page
 ![example1](md_pics/p2.png)
-![example2](md_pics/p1.png)
+<img src="md_pics/p1.png" alt="example2" style="width:50%; height:auto;">
