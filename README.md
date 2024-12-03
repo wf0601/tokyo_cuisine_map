@@ -5,10 +5,21 @@ As a Food Hunter used to be living in Tokyo, I collected information about many 
 This project can serve as your personal pocket guide to explore great food in Tokyo. You can mark the places you have visited, save your comments and reviews, and get your daily recommendations or use it as a search engine. 
 
 
-You can simply build from source using docker
+You can simply build from source using docker. 
 
-`docker build -t tokyo-cuisine-map`
+To build the image:
 
-`docker run -p 5004:5004`
+`docker build -t tokyo_cuisine`
 
-Feel free to modify some setting in the config.
+Run with either the run button in Docker or use the code below.
+
+`docker run -d -p 5004:5004 --name my_tokyo_cuisine tokyo_cuisine`
+
+Feel free to modify settings in the config, you can add/remove genres to tailor your own version of maps.
+
+## Landing Page
+![landing_page](md_pics/p3.png)
+
+## Map Page
+![example1](md_pics/p2.png)
+![example2](md_pics/p1.png)
