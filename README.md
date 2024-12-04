@@ -9,9 +9,9 @@ You can simply build from source using docker.
 
 To build the image:
 
-`docker build -t tokyo_cuisine`
+`docker build -t tokyo_cuisine .`
 
-Run with either click the run button in Docker or use the command below.
+Run with either clicking the run button in Docker or using the command below.
 
 `docker run -d -p 5004:5004 --name my_tokyo_cuisine tokyo_cuisine`
 
@@ -26,6 +26,6 @@ You can tick on 'Visited' to mark the restaurants you have already been to.
 
 ![example1](md_pics/p2.png)
 
-You can add your own reviews or remarks of the restaurants, it will be saved automatically in the backend. 
+You can also add your own reviews or remarks of the restaurants, it will be saved automatically in the backend. 
 
 <img src="md_pics/p1.png" alt="example2" style="width:50%; height:auto;">
